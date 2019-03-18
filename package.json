@@ -1,0 +1,22 @@
+{
+  "name": "crowdpong",
+  "version": "1.0.0",
+  "description": "Pong for Crowds",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "GPL-2.0-only",
+  "devDependencies": {
+    "coffeescript": "^2.3.2",
+    "html-webpack-plugin": "^3.2.0",
+    "typescript": "^3.3.3333",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0",
+    "webpack-dev-server": "^3.2.1"
+  },
+  "dependencies": {
+    "d3": "^5.9.2"
+  }
+}

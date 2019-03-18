@@ -1,0 +1,6 @@
+.*.sw?
+node_modules
+dist
+
+# for now...
+package-lock.json

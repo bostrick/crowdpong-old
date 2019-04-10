@@ -4,19 +4,32 @@
   "description": "Pong for Crowds",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "webpack-dev-server --watch",
+    "watch": "npm run build -- --watch",
+    "prebuild:prod": "npm install",
+    "build:prod": "NODE_ENV=production ./node_modules/.bin/webpack -p --mode production --display minimal --progress",
+    "build": "NODE_ENV=development ./node_modules/.bin/webpack --mode development --display minimal --progress",
+    "test": "NODE_ENV=test jest",
+    "start": "./app.sh"
   },
   "author": "",
   "license": "GPL-2.0-only",
   "devDependencies": {
+    "awesome-typescript-loader": "^5.2.1",
     "coffeescript": "^2.3.2",
     "html-webpack-plugin": "^3.2.0",
-    "typescript": "^3.3.3333",
+    "source-map-loader": "^0.2.4",
+    "typescript": "^3.4.3",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0",
     "webpack-dev-server": "^3.2.1"
   },
   "dependencies": {
-    "d3": "^5.9.2"
+    "@types/d3": "^5.7.2",
+    "@types/react": "^16.8.13",
+    "@types/react-dom": "^16.8.3",
+    "d3": "^5.9.2",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
   }
 }

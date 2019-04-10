@@ -6,14 +6,34 @@ module.exports =
 
   mode: 'development'
 
-  entry: './src/index.ts'
+  entry: './src/index.tsx'
 
   output:
     path: path.resolve(__dirname, 'dist')
     filename: 'bundle.js'
 
+  module:
+    rules: [
+        test: /\.tsx?$/
+        loader: 'awesome-typescript-loader'
+      ,
+        enforce: 'pre'
+        test: /\.js$/
+        loader: 'source-map-loader'
+    ]
+
+  devtool: 'source-map'
+
+  resolve:
+    extensions: [ '.ts', '.tsx', '.js', '.json' ]
+
   plugins: [
     new HtmlWebpackPlugin(template: './src/index.html')
   ]
+
+#  externals:
+#    react: "React"
+#    'react-dom': "ReactDOM"
+
 
 

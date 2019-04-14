@@ -7,15 +7,17 @@ import { Board } from "./components/Board";
 import { Game } from "./stores/game";
 import { KeyboardDriver } from "./drivers/keyboard";
 
+import "./style.css";
 
 const game = new Game();
 const kbd = new KeyboardDriver(game);
 
 const App = () => (
-    <Provider game={game}>
-            <Board />
-    </Provider>
+  <Provider game={game}>
+    <Board />
+  </Provider>
 )
 
-ReactDOM.render(<App />, document.getElementById("app"));
+game.start();
 
+ReactDOM.render(<App />, document.getElementById("app"));

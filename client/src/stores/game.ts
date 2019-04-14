@@ -68,14 +68,14 @@ export class Game implements IGame {
 
     @action
     do_paddle_two_up() {
-      if (this.paddle_one_x > this.PADDLE_HEIGHT/2.0) {
+      if (this.paddle_two_x > this.PADDLE_HEIGHT/2.0) {
         this.paddle_two_x -= this.PADDLE_DELTAX; 
       }
     }
 
     @action
     do_paddle_two_down() {
-      if (this.paddle_one_x < (this.COURT_HEIGHT - this.PADDLE_HEIGHT/2.0)) {
+      if (this.paddle_two_x < (this.COURT_HEIGHT - this.PADDLE_HEIGHT/2.0)) {
         this.paddle_two_x += this.PADDLE_DELTAX; 
       }
     }

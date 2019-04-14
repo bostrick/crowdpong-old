@@ -20,6 +20,15 @@ module.exports =
         enforce: 'pre'
         test: /\.js$/
         loader: 'source-map-loader'
+      ,
+        test: /\.css$/
+        loader: [
+            loader: 'style-loader'
+          ,
+            loader: 'css-loader'
+            options:
+              sourceMap: true
+        ]
     ]
 
   devtool: 'source-map'

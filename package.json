@@ -17,8 +17,10 @@
   "devDependencies": {
     "awesome-typescript-loader": "^5.2.1",
     "coffeescript": "^2.3.2",
+    "css-loader": "^2.1.1",
     "html-webpack-plugin": "^3.2.0",
     "source-map-loader": "^0.2.4",
+    "style-loader": "^0.23.1",
     "typescript": "^3.4.3",
     "webpack": "^4.29.6",
     "webpack-cli": "^3.3.0",

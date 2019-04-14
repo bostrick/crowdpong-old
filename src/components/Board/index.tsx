@@ -31,13 +31,13 @@ export class Board extends React.Component<{game? : IGame}, {}> {
           <rect className="paddle"
             width={game.WALL_WIDTH}
             height={game.PADDLE_HEIGHT}
-            x={game.PADDLE_OFFSET}
+            x={game.PADDLE_OFFSET-game.WALL_WIDTH/2.0}
             y={game.paddle_one_x-game.PADDLE_HEIGHT/2.0} />
 
           <rect className="paddle"
             width={game.WALL_WIDTH}
             height={game.PADDLE_HEIGHT}
-            x={game.COURT_WIDTH-game.PADDLE_OFFSET}
+            x={game.COURT_WIDTH-game.PADDLE_OFFSET-game.WALL_WIDTH/2.0}
             y={game.paddle_two_x-game.PADDLE_HEIGHT/2.0} />
                   
           <rect className="ball"
@@ -53,19 +53,3 @@ export class Board extends React.Component<{game? : IGame}, {}> {
   }
 
 }
-
-/*
-
-      <svg:svg 
-        id="board" 
-        width={game.BOARD_WIDTH}
-        height={game.BOARD_HEIGHT}
-        style="fill:black">
-      </svg:svg>
-
-        <svg:rect x="0" y="0" width="100%" height="10px" style="fill:white" />
-
-        <svg:rect x="0" y={game.BOARD_HEIGHT-10}
-                width="100%" height="10px" style="fill:white" />
-          
-*/

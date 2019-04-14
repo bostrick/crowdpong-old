@@ -31,11 +31,14 @@ export class Game implements IGame {
     readonly WALL_WIDTH = 10;
 
     readonly PADDLE_HEIGHT = 120;
-    readonly PADDLE_OFFSET = 20;
+    readonly PADDLE_OFFSET = 40;
 
     readonly PADDLE_DELTAX = 4;
 
     private timer = null;
+
+    private readonly min_y = this.WALL_WIDTH;
+    private readonly max_y = this.COURT_HEIGHT - this.WALL_WIDTH;
 
     @observable ball_x = [this.COURT_WIDTH/2.0, this.COURT_HEIGHT/2.0];
     @observable ball_v = [1.0, 1.0];
@@ -50,23 +53,77 @@ export class Game implements IGame {
     @observable score_two = 0;
 
     @action
-    do_paddle_one_up() { this.paddle_one_x -= this.PADDLE_DELTAX; }
+    do_paddle_one_up() { 
+      if (this.paddle_one_x > this.PADDLE_HEIGHT/2.0) {
+        this.paddle_one_x -= this.PADDLE_DELTAX; 
+      }
+    }
 
     @action
-    do_paddle_one_down() { this.paddle_one_x += this.PADDLE_DELTAX; }
+    do_paddle_one_down() { 
+      if (this.paddle_one_x < (this.COURT_HEIGHT - this.PADDLE_HEIGHT/2.0)) {
+        this.paddle_one_x += this.PADDLE_DELTAX; 
+      }
+    }
 
     @action
-    do_paddle_two_up() { this.paddle_two_x -= this.PADDLE_DELTAX; }
+    do_paddle_two_up() {
+      if (this.paddle_one_x > this.PADDLE_HEIGHT/2.0) {
+        this.paddle_two_x -= this.PADDLE_DELTAX; 
+      }
+    }
 
     @action
-    do_paddle_two_down() { this.paddle_two_x += this.PADDLE_DELTAX; }
+    do_paddle_two_down() {
+      if (this.paddle_one_x < (this.COURT_HEIGHT - this.PADDLE_HEIGHT/2.0)) {
+        this.paddle_two_x += this.PADDLE_DELTAX; 
+      }
+    }
 
     @action
     do_step = () => { 
-      console.log("step");
-      console.log(this);
+
+      // move the ball
       this.ball_x[0] += this.ball_v[0];
       this.ball_x[1] += this.ball_v[1];
+      
+      // bounce off left paddle?
+      const paddle_one_y_min = this.paddle_one_x - this.PADDLE_HEIGHT/2.0;
+      const paddle_one_y_max = this.paddle_one_x + this.PADDLE_HEIGHT/2.0;
+      const paddle_one_x_max = this.PADDLE_OFFSET + this.WALL_WIDTH/2.0;
+      const paddle_one_x_min = this.PADDLE_OFFSET - this.WALL_WIDTH/2.0;
+
+      if (this.ball_v[0] < 0.0 &&
+          this.ball_x[1] >= paddle_one_y_min &&
+          this.ball_x[1] <= paddle_one_y_max &&
+          this.ball_x[0] >= paddle_one_x_min &&
+          this.ball_x[0] <= paddle_one_x_max) {
+            this.ball_v[0] *= -1;
+      }
+
+      // bounce off right paddle?
+      const paddle_two_y_min = this.paddle_two_x - this.PADDLE_HEIGHT/2.0;
+      const paddle_two_y_max = this.paddle_two_x + this.PADDLE_HEIGHT/2.0;
+      const paddle_two_x_max =
+        this.COURT_WIDTH - (this.PADDLE_OFFSET - this.WALL_WIDTH/2.0);
+      const paddle_two_x_min =
+        this.COURT_WIDTH - (this.PADDLE_OFFSET + this.WALL_WIDTH/2.0);
+
+      if (this.ball_v[0] > 0.0 &&
+          this.ball_x[1] >= paddle_two_y_min &&
+          this.ball_x[1] <= paddle_two_y_max &&
+          this.ball_x[0] >= paddle_two_x_min &&
+          this.ball_x[0] <= paddle_two_x_max) {
+            this.ball_v[0] *= -1;
+      }
+
+      // bounce off top/bottom?
+      if (this.ball_x[1] <= this.min_y) this.ball_v[1] *= -1;
+      if (this.ball_x[1] >= this.max_y) this.ball_v[1] *= -1;
+
+      // bounce of horizontal ends
+      if (this.ball_x[0] >= this.COURT_WIDTH) this.ball_v[0] *= -1;
+      if (this.ball_x[0] <= 0) this.ball_v[0] *= -1;
     }
 
     @action

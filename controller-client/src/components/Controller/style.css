@@ -1,0 +1,9 @@
+button.up {
+  background-color: red;
+  width: 100px;
+}
+
+button.down {
+  background-color: green;
+  width: 100px;
+}

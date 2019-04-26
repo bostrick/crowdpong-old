@@ -1,6 +1,9 @@
 .*.sw?
 node_modules
 dist
+reports
+.coverage
+venv*
 
 # for now...
 package-lock.json

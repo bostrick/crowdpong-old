@@ -16,6 +16,7 @@ requires = [
     'pyramid_beaker',
     'attrs',
     'redis',
+    'pytest',
     ]
 
 tests_require = [

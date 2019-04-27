@@ -17,13 +17,13 @@ class ViewTests(unittest.TestCase):
         self.assertEqual(info['project'], 'crowdpong-api')
 
 
-class FunctionalTests(unittest.TestCase):
-    def setUp(self):
-        from crowdpong_api import main
-        app = main({})
-        from webtest import TestApp
-        self.testapp = TestApp(app)
-
-    def test_root(self):
-        res = self.testapp.get('/', status=200)
-        self.assertTrue(b'Pyramid' in res.body)
+#class FunctionalTests(unittest.TestCase):
+#    def setUp(self):
+#        from crowdpong_api import main
+#        app = main({})
+#        from webtest import TestApp
+#        self.testapp = TestApp(app)
+#
+#    def test_root(self):
+#        res = self.testapp.get('/', status=200)
+#        self.assertTrue(b'Pyramid' in res.body)

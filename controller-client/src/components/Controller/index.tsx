@@ -18,8 +18,14 @@ export class ControlPanel extends React.Component<{controller? : IGameController
   render() {
     const c = this.props.controller;
     return <div className="controller">
-        <button className="up" onClick={this.do_up}> Up </button>
-        <button className="down" onClick={this.do_down}> Down </button>
+        <figure className="d-block figure">
+          <img className="button w-100 img-fluid rounded-circle" 
+            src="img/red_up_arrow.png" onClick={this.do_up}/>
+        </figure>
+        <figure className="d-block figure">
+          <img className="button w-100 img-fluid rounded-circle" 
+            src="img/blue_down_arrow.png" onClick={this.do_down}/>
+        </figure>
     </div>;
   }
 

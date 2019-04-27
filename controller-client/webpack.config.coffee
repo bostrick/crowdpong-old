@@ -1,5 +1,7 @@
 
-HtmlWebpackPlugin = require('html-webpack-plugin')  # installed via npm
+HtmlWebpackPlugin = require('html-webpack-plugin')
+CopyWebpackPlugin = require('copy-webpack-plugin')
+
 path = require('path')
 
 module.exports =
@@ -21,6 +23,9 @@ module.exports =
         test: /\.js$/
         loader: 'source-map-loader'
       ,
+        test: /\.(jpe?g|gif|png|svg|woff|ttf|wav|mp3)$/
+        loader: 'file-loader'
+      ,
         test: /\.css$/
         loader: [
             loader: 'style-loader'
@@ -38,6 +43,7 @@ module.exports =
 
   plugins: [
     new HtmlWebpackPlugin(template: './src/index.html')
+    new CopyWebpackPlugin([from: './src/static'])
   ]
 
 #  externals:

@@ -1,5 +1,5 @@
-
-HtmlWebpackPlugin = require('html-webpack-plugin')  # installed via npm
+HtmlWebpackPlugin = require('html-webpack-plugin')
+CopyWebpackPlugin = require('copy-webpack-plugin')
 path = require('path')
 
 module.exports =
@@ -38,6 +38,7 @@ module.exports =
 
   plugins: [
     new HtmlWebpackPlugin(template: './src/index.html')
+    new CopyWebpackPlugin([from: './src/static'])
   ]
 
 #  externals:

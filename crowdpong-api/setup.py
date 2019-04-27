@@ -14,7 +14,7 @@ requires = [
     'pyramid_debugtoolbar',
     'waitress',
     'pyramid_beaker',
-    'attr',
+    'attrs',
     'redis',
     ]
 
